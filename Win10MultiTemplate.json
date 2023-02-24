@@ -12,7 +12,12 @@
         "type": "string"
       }
     },
-    "variables": {},
+    "variables": {
+	"addressPrefix": "10.50.0.0/16",
+    	"subnetName": "AIBSubnetDemo",
+    	"subnetPrefix": "10.50.0.0/24",
+    	"virtualNetworkName": "MyVNETforAIB"
+},
     "resources": [
       {
         "name": "[parameters('imageTemplateName')]",
@@ -27,7 +32,7 @@
         "identity": {
           "type": "UserAssigned",
           "userAssignedIdentities": {
-            "<imgBuilderId>": {}
+            "/subscriptions/905b3b48-6110-4e72-841f-cf1630e982e2/resourcegroups/AIBDemoRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myIdentity1677254089": {}
           }
         },
         "properties": {
@@ -40,7 +45,7 @@
             "type": "PlatformImage",
             "publisher": "MicrosoftWindowsDesktop",
             "offer": "Windows-10",
-            "sku": "win10-21h2-avd-g2",
+            "sku": "win10-22h2-ent",
             "version": "latest"
           },
           "customize": [
@@ -58,9 +63,9 @@
           "distribute": [
             {
               "type": "ManagedImage",
-              "imageId": "/subscriptions/<subscriptionID>/resourceGroups/<rgName>/providers/Microsoft.Compute/images/<imageName>",
-              "location": "<region>",
-              "runOutputName": "<runOutputName>",
+              "imageId": "/subscriptions/905b3b48-6110-4e72-841f-cf1630e982e2/resourceGroups/AIBDemoRG/providers/Microsoft.Compute/images/aibCustomImgWin10",
+              "location": "eastus",
+              "runOutputName": "win10Client",
               "artifactTags": {
                 "source": "azVmImageBuilder",
                 "baseosimg": "windows10Multi"
@@ -72,3 +77,9 @@
     ]
   }
   
+
+
+
+
+
+
